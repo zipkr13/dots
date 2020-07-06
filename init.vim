@@ -18,24 +18,25 @@ Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree'
 Plug 'chriskempson/base16-vim'
-Plug 'neovim/nvim-lsp'
+Plug 'ayu-theme/ayu-vim'
+Plug 'morhetz/gruvbox'
 Plug 'franbach/miramare'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " ========================================================
 " color settings
 set termguicolors
-let g:miramare_enable_italic = 1
-let g:miramare_disable_italic_comment = 1
-colo miramare
+let ayucolor="mirage"
+colo ayu
 
 " ========
 " coc-explorer
-nmap <C-o> :CocCommand explorer<Cr>
+nmap <C-o> :NERDTreeToggle<Cr>
 
 
 " ==================================================
@@ -45,7 +46,7 @@ vmap <S-Tab> <gv
 
 " ==================================================
 " vim-airline
-let g:airline_theme = 'miramare'
+let g:airline_theme = 'ayu'
 
 
 " ==================================================
