@@ -4,8 +4,8 @@ set number relativenumber
 set autoindent
 set cursorline
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
-autocmd BufRead,BufNewFile *.proto set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
-autocmd BufRead,BufNewFile *.go set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+au BufWritePost *.go silent exec "!gofmt -w %"
+
 
 " =====================================================
 " Specify a directory for plugins
@@ -25,14 +25,29 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jremmen/vim-ripgrep'
+Plug 'tpope/vim-fugitive'
+Plug 'danilamihailov/beacon.nvim'
+Plug 'psliwka/vim-smoothie'
+Plug 'RobertAudi/GoldenView.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'voldikss/vim-floaterm'
+
+
+" Add maktaba and bazel to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " ========================================================
 " color settings
 set termguicolors
-let ayucolor="mirage"
+set background=dark
+let ayucolor="dark"
 colo ayu
+
 
 " ========
 " coc-explorer
@@ -44,9 +59,18 @@ nmap <C-o> :NERDTreeToggle<Cr>
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
+
 " ==================================================
 " vim-airline
-let g:airline_theme = 'ayu'
+let g:airline_theme = "ayu"
+
+
+" ==================================================
+" nerdtree
+" enable line numbers
+let NERDTreeShowLineNumbers=1
+" make sure relative line numbers are used
+autocmd FileType nerdtree setlocal relativenumber
 
 
 " ==================================================
@@ -60,7 +84,21 @@ let g:go_highlight_fields = 1
 let g:go_highlight_variable_assignments = 1
 
 
+" beacon.nvim settings
+let g:beacon_size = 30
+highlight Beacon guibg=Yellow
+
+
+
+" limelight
 " ==================================================
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+
+
+
+
 " ==================================================
 " coc
 " TextEdit might fail if hidden is not set.
